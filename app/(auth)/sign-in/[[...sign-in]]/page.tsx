@@ -1,10 +1,10 @@
 import React from 'react'
-import { SignInButton } from "@clerk/nextjs"
+import { SignIn } from '@clerk/nextjs'
 
-const SignIn = () => {
+const SignInPage = () => {
   return (
-    <SignInButton mode='redirect'/>
+    <SignIn/>
   )
 }
 
-export default SignIn
+export default SignInPage
