@@ -35,7 +35,7 @@ const Dashboard = () => {
     }
   }, [isLoaded]);
 
-  const { loading, error, fetchData: updateUserName } = useFetch(updateUsername);
+  const { loading, error, fn: updateUserName } = useFetch(updateUsername);
 
   const onSubmit = async (data: any) => {
     updateUserName(data.username); // Pass the username in an object
@@ -66,9 +66,9 @@ const Dashboard = () => {
               {errors.username && (
                 <p className="text-red-500 text-sm mt-1">{String(errors.username.message)}</p>
               )}
-              {error && (
-                <p className="text-red-500 text-sm mt-1">{error?.message}</p>
-              )}
+              {/* {error && (
+                <p className="text-red-500 text-sm mt-1">{error}</p>
+              )} */}
             </div>
             <Button type="submit">
               {loading ? "Updating..." : "Update"}
