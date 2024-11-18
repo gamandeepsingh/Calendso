@@ -6,7 +6,6 @@ import { eventSchema } from "@/app/lib/validator";
 
 export async function createEvent(data) {
   const { userId } = await auth();
-  console.log("Auth userId:", userId);
 
   if (!userId) {
     throw new Error("Unauthorized");
@@ -34,10 +33,8 @@ export async function createEvent(data) {
 
 export async function getUserEvents() {
   const { userId } = await auth();
-  console.log("Auth userId:", userId);
   
   if (!userId) {
-    console.log("Unauthorized access");
     return { events: [] };
   }
 
