@@ -2,10 +2,10 @@
 
 import { db } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
-import { eventSchema } from "@/app/lib/validator";
+import { eventSchema } from "@/app/lib/validators";
 
 export async function createEvent(data) {
-  const { userId } = await auth();
+  const { userId } = auth();
 
   if (!userId) {
     throw new Error("Unauthorized");
@@ -18,7 +18,7 @@ export async function createEvent(data) {
   });
 
   if (!user) {
-    return { error: "User not found" };
+    throw new Error("User not found");
   }
 
   const event = await db.event.create({
@@ -32,10 +32,9 @@ export async function createEvent(data) {
 }
 
 export async function getUserEvents() {
-  const { userId } = await auth();
-  
+  const { userId } = auth();
   if (!userId) {
-    return { events: [] };
+    throw new Error("Unauthorized");
   }
 
   const user = await db.user.findUnique({
@@ -43,7 +42,7 @@ export async function getUserEvents() {
   });
 
   if (!user) {
-    return { events: [] };
+    throw new Error("User not found");
   }
 
   const events = await db.event.findMany({
@@ -60,9 +59,9 @@ export async function getUserEvents() {
 }
 
 export async function deleteEvent(eventId) {
-  const { userId } = await auth();
+  const { userId } = auth();
   if (!userId) {
-    return { error: "Unauthorized" };
+    throw new Error("Unauthorized");
   }
 
   const user = await db.user.findUnique({

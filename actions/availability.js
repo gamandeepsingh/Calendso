@@ -12,7 +12,7 @@ import {
 } from "date-fns";
 
 export async function getUserAvailability() {
-  const { userId } = await auth();
+  const { userId } = auth();
 
   if (!userId) {
     throw new Error("Unauthorized");
@@ -62,7 +62,7 @@ export async function getUserAvailability() {
 }
 
 export async function updateAvailability(data) {
-  const { userId } = await auth();
+  const { userId } = auth();
 
   if (!userId) {
     throw new Error("Unauthorized");
