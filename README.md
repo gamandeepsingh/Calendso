@@ -47,3 +47,14 @@ docker run -p 3000:3000 your-app-name
 - `Note`: The application will be accessible at `http://localhost:3000`.
 
 
+## Follow the steps below to build and run the project using Docker Compose.
+
+#### Run the following command to build and start the container:
+Start a container using the built image:
+```bash
+sudo docker compose up
+```
+- To stop the container, run:
+```bash
+sudo docker compose down
+```
